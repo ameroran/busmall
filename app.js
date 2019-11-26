@@ -186,6 +186,8 @@ function list() {
                 borderWidth: 1
                 
             }]
+
+
         },
         options: {
             scales: {
@@ -199,6 +201,9 @@ function list() {
     });
 
 }
+
+
+
 
 function randomImage(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
