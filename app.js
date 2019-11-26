@@ -38,9 +38,9 @@ function Pic(name) {
     this.imagePath = `img/${name}.jpg`;
     this.votes = 0;
     this.views = 0;
-
+    
     Pic.all.push(this);
-
+    
 }
 
 Pic.all = [];
@@ -52,32 +52,32 @@ for (let i = 0; i < names.length; i++) {
 function render() {
 
     // for (let i = 0; i < names.length; i++) {
-
-
-    while (leftPic === middlePic || leftPic === rightPic || rightPic === middlePic) {
-
-        var leftPic = Pic.all[randomImage(0, Pic.all.length - 1)];
-        var middlePic = Pic.all[randomImage(0, Pic.all.length - 1)];
-        var rightPic = Pic.all[randomImage(0, Pic.all.length - 1)];
-
-    }
-
-    // }
-    leftPic.views++;
-    rightPic.views++;
-    middlePic.views++;
-    leftImage.setAttribute("src", leftPic.imagePath);
-    leftImage.setAttribute("alt", leftPic.name);
+        
+        
+        while (leftPic === middlePic || leftPic === rightPic || rightPic === middlePic) {
+            
+            var leftPic = Pic.all[randomImage(0, Pic.all.length - 1)];
+            var middlePic = Pic.all[randomImage(0, Pic.all.length - 1)];
+            var rightPic = Pic.all[randomImage(0, Pic.all.length - 1)];
+            
+        }
+        
+        // }
+        leftPic.views++;
+        rightPic.views++;
+        middlePic.views++;
+        leftImage.setAttribute("src", leftPic.imagePath);
+        leftImage.setAttribute("alt", leftPic.name);
     leftImage.setAttribute("title", leftPic.name);
-
+    
     middleImage.setAttribute("src", middlePic.imagePath);
     middleImage.setAttribute("alt", middlePic.name);
     middleImage.setAttribute("title", middlePic.name);
-
+    
     rightImage.setAttribute("src", rightPic.imagePath);
     rightImage.setAttribute("alt", rightPic.name);
     rightImage.setAttribute("title", rightPic.name);
-
+    
 }
 render();
 
@@ -94,18 +94,23 @@ function loveClick(e) {
             console.log(counter);
         } if (counter === 25) {
             
-            imagesForm.removeEventListener("click", loveClick(e));
             list();
+            updateVotes();
+            imagesForm.removeEventListener("click", loveClick(e));
         }
     }
 }
+
 imagesForm.addEventListener("click", loveClick);
+getItem();
 
+// vo =votes
+// vi =views
 
-var vo = [];
-var vi = [];
 
 function list() {
+    var vo = [];
+    var vi = [];
     var sectionEl = document.createElement("section");
     imagesForm.appendChild(sectionEl);
     var ulEl = document.createElement("ul");
@@ -114,16 +119,16 @@ function list() {
         ulEl.appendChild(liEl)
         sectionEl.appendChild(ulEl);
         liEl.textContent = `${names[x]} had ${Pic.all[x].votes}votes and was shown ${Pic.all[x].views} times`;
-
+        
         vo.push(Pic.all[x].votes);
         vi.push(Pic.all[x].views);
     }
-
-
+    
+    
 
     
     var ctx = document.getElementById("myChart").getContext("2d");
-
+    
     var myChart = new Chart(ctx, {
         type: "bar",    
         data: {
@@ -141,7 +146,7 @@ function list() {
                     'rgba(75, 192, 192, 1)',
                     'rgba(153, 102, 255, 1)',
                     'rgba(255, 159, 64, 1)'
-
+                    
                     
                     
                 ],
@@ -161,7 +166,7 @@ function list() {
                 label: "# of views",    
                 data: vi,
                 
-
+                
                 backgroundColor: [
                     
                     'rgba(255, 99, 132, 1)',    
@@ -171,7 +176,7 @@ function list() {
                     'rgba(153, 102, 255, 1)',
                     'rgba(255, 159, 64, 1)'
                     
-
+                    
                     
                 ],
                 borderColor: [
@@ -186,8 +191,8 @@ function list() {
                 borderWidth: 1
                 
             }]
-
-
+            
+            
         },
         options: {
             scales: {
@@ -199,14 +204,26 @@ function list() {
             }
         }
     });
-
+    
 }
-
-
-
 
 function randomImage(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
 
+function updateVotes() {
+    var arrString = JSON.stringify(Pic.all);
+    localStorage.setItem("order", arrString);  
+}
+
+
+  function getItem() {
+      var itemString = localStorage.getItem("order");
+      if (itemString) {
+          Pic.all = JSON.parse(itemString);
+        //   render();
+        }  
+    }
+    
+    
