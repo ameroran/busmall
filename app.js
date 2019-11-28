@@ -45,11 +45,83 @@ function Pic(name) {
 
 Pic.all = [];
 
+var secondRound = [];
 for (let i = 0; i < names.length; i++) {
     new Pic(names[i]);
 }
 
+
 function render() {
+    // console.log('before while' , secondRound);
+
+    var leftPic = Pic.all[randomImage(0, Pic.all.length - 1)];
+    var middlePic = Pic.all[randomImage(0, Pic.all.length - 1)];
+    var rightPic = Pic.all[randomImage(0, Pic.all.length - 1)];
+
+
+    while (secondRound.includes(leftPic) || secondRound.includes(middlePic) || secondRound.includes(rightPic) || leftPic === middlePic || leftPic === rightPic || rightPic === middlePic) {
+        
+            leftPic = Pic.all[randomImage(0, Pic.all.length - 1)];
+            middlePic = Pic.all[randomImage(0, Pic.all.length - 1)];
+            rightPic = Pic.all[randomImage(0, Pic.all.length - 1)];
+        }
+        secondRound.shift();
+        secondRound.shift();
+        secondRound.shift();
+        secondRound.push(leftPic);
+        secondRound.push(middlePic);
+        secondRound.push(rightPic);
+        // console.log('first while', secondRound);    
+        
+        // Collaborate with DANTEMESSY
+        
+
+
+
+
+        // while (secondRound.includes(middlePic)) {
+
+        //     middlePic = Pic.all[randomImage(0, Pic.all.length - 1)];
+        // }
+        // secondRound.push(middlePic);
+        // secondRound.shift();
+
+
+
+        // while (secondRound.includes(rightPic)) {
+        //     rightPic = Pic.all[randomImage(0, Pic.all.length - 1)];
+        // }
+        // secondRound.push(rightPic);
+        // secondRound.shift();
+
+
+        //  (secondRound.includes(middlePic)) {
+        //     middlePic = Pic.all[randomImage(0, Pic.all.length - 1)];
+
+        //     secondRound.shift();
+        // }
+        // secondRound.push(middlePic);
+
+
+        //         if (secondRound.includes(middlePic)) {
+        //             rightPic = Pic.all[randomImage(0, Pic.all.length - 1)];
+
+        //             secondRound.shift();
+        //         }
+        //         secondRound.push(rightPic);
+
+
+
+
+
+    // }
+
+    // }
+    leftPic.views++;
+    rightPic.views++;
+    middlePic.views++;
+    leftImage.setAttribute("src", leftPic.imagePath);
+    leftImage.setAttribute("alt", leftPic.name);
 
     // for (let i = 0; i < names.length; i++) {
         
@@ -93,6 +165,9 @@ function loveClick(e) {
             counter++;
             console.log(counter);
         } if (counter === 25) {
+
+            imagesForm.removeEventListener("click", loveClick(e));
+
             
             list();
             updateVotes();
@@ -126,34 +201,40 @@ function list() {
     
     
 
-    
+
     var ctx = document.getElementById("myChart").getContext("2d");
     
     var myChart = new Chart(ctx, {
-        type: "bar",    
+        type: "bar",
         data: {
-            labels: names,    
-            
+            labels: names,
+
             datasets: [{
-                label: "# of votes",    
+                label: "# of votes",
                 data: vo,
+
+
+
                 
                 
                 backgroundColor: "black",
                 borderColor: "black",
                 borderWidth: 1
-                
-                
+
+
             },
             {
-                label: "# of views",    
+                label: "# of views",
                 data: vi,
+
+
+
                 
                 
                 backgroundColor: "grey",
                 borderColor: "grey",
                 borderWidth: 1
-                
+
             }]
             
             
@@ -162,7 +243,7 @@ function list() {
             scales: {
                 yAxes: [{
                     ticks: {
-                        beginAtZero: true    
+                        beginAtZero: true
                     }
                 }]
             }
