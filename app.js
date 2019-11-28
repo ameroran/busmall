@@ -45,22 +45,76 @@ function Pic(name) {
 
 Pic.all = [];
 
+var secondRound = [];
 for (let i = 0; i < names.length; i++) {
     new Pic(names[i]);
 }
 
+
 function render() {
+    // console.log('before while' , secondRound);
 
-    // for (let i = 0; i < names.length; i++) {
+    var leftPic = Pic.all[randomImage(0, Pic.all.length - 1)];
+    var middlePic = Pic.all[randomImage(0, Pic.all.length - 1)];
+    var rightPic = Pic.all[randomImage(0, Pic.all.length - 1)];
 
 
-    while (leftPic === middlePic || leftPic === rightPic || rightPic === middlePic) {
+    while (secondRound.includes(leftPic) || secondRound.includes(middlePic) || secondRound.includes(rightPic) || leftPic === middlePic || leftPic === rightPic || rightPic === middlePic) {
+        
+            leftPic = Pic.all[randomImage(0, Pic.all.length - 1)];
+            middlePic = Pic.all[randomImage(0, Pic.all.length - 1)];
+            rightPic = Pic.all[randomImage(0, Pic.all.length - 1)];
+        }
+        secondRound.shift();
+        secondRound.shift();
+        secondRound.shift();
+        secondRound.push(leftPic);
+        secondRound.push(middlePic);
+        secondRound.push(rightPic);
+        // console.log('first while', secondRound);    
+        
+        // Collaborate with DANTEMESSY
+        
 
-        var leftPic = Pic.all[randomImage(0, Pic.all.length - 1)];
-        var middlePic = Pic.all[randomImage(0, Pic.all.length - 1)];
-        var rightPic = Pic.all[randomImage(0, Pic.all.length - 1)];
 
-    }
+
+
+        // while (secondRound.includes(middlePic)) {
+
+        //     middlePic = Pic.all[randomImage(0, Pic.all.length - 1)];
+        // }
+        // secondRound.push(middlePic);
+        // secondRound.shift();
+
+
+
+        // while (secondRound.includes(rightPic)) {
+        //     rightPic = Pic.all[randomImage(0, Pic.all.length - 1)];
+        // }
+        // secondRound.push(rightPic);
+        // secondRound.shift();
+
+
+        //  (secondRound.includes(middlePic)) {
+        //     middlePic = Pic.all[randomImage(0, Pic.all.length - 1)];
+
+        //     secondRound.shift();
+        // }
+        // secondRound.push(middlePic);
+
+
+        //         if (secondRound.includes(middlePic)) {
+        //             rightPic = Pic.all[randomImage(0, Pic.all.length - 1)];
+
+        //             secondRound.shift();
+        //         }
+        //         secondRound.push(rightPic);
+
+
+
+
+
+    // }
 
     // }
     leftPic.views++;
@@ -93,7 +147,7 @@ function loveClick(e) {
             counter++;
             console.log(counter);
         } if (counter === 25) {
-            
+
             imagesForm.removeEventListener("click", loveClick(e));
             list();
         }
@@ -121,70 +175,34 @@ function list() {
 
 
 
-    
+
     var ctx = document.getElementById("myChart").getContext("2d");
 
     var myChart = new Chart(ctx, {
-        type: "bar",    
+        type: "bar",
         data: {
-            labels: names,    
-            
-            datasets: [{
-                label: "# of votes",    
-                data: vo,
-                
-                
-                backgroundColor: [
-                    'rgba(255, 99, 132, 1)',    
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)'
+            labels: names,
 
-                    
-                    
-                ],
-                borderColor: [
-                    'rgba(255, 99, 132, 1)',    
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)'
-                ],
+            datasets: [{
+                label: "# of votes",
+                data: vo,
+
+
+                backgroundColor: "black",
+                borderColor: "black",
                 borderWidth: 1
-                
-                
+
+
             },
             {
-                label: "# of views",    
+                label: "# of views",
                 data: vi,
-                
 
-                backgroundColor: [
-                    
-                    'rgba(255, 99, 132, 1)',    
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)'
-                    
 
-                    
-                ],
-                borderColor: [
-                    'rgba(255, 99, 132, 0.2)',    
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)',
-                    
-                ],
+                backgroundColor: "grey",
+                borderColor: "grey",
                 borderWidth: 1
-                
+
             }]
 
 
@@ -193,7 +211,7 @@ function list() {
             scales: {
                 yAxes: [{
                     ticks: {
-                        beginAtZero: true    
+                        beginAtZero: true
                     }
                 }]
             }
