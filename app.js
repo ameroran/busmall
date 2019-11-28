@@ -28,7 +28,7 @@ var leftImage = document.querySelector("#leftImage");
 var middleImage = document.querySelector("#middleImage");
 var rightImage = document.querySelector("#rightImage");
 var counter = 0;
-// var limit = 25;
+// var showArr = [];
 
 var imagesForm = document.querySelector("#imagesForm");
 
@@ -49,9 +49,12 @@ for (let i = 0; i < names.length; i++) {
     new Pic(names[i]);
 }
 
-function render() {
 
+function render() {
+    
     // for (let i = 0; i < names.length; i++) {
+        
+        
         
         
         while (leftPic === middlePic || leftPic === rightPic || rightPic === middlePic) {
@@ -61,20 +64,30 @@ function render() {
             var rightPic = Pic.all[randomImage(0, Pic.all.length - 1)];
             
         }
+
         
-        // }
+        // if (showArr[0]=== leftPic || rightPic || middlePic) {
+        //     showArr.includes[0];
+            
+        //         }
+        //         showArr.shift();
+                
+                
+                
+                
+                // showArr.push(leftPic,middlePic,rightPic);
         leftPic.views++;
         rightPic.views++;
         middlePic.views++;
         leftImage.setAttribute("src", leftPic.imagePath);
         leftImage.setAttribute("alt", leftPic.name);
-    leftImage.setAttribute("title", leftPic.name);
+        leftImage.setAttribute("title", leftPic.name);
+        
+        middleImage.setAttribute("src", middlePic.imagePath);
+        middleImage.setAttribute("alt", middlePic.name);
+        middleImage.setAttribute("title", middlePic.name);
     
-    middleImage.setAttribute("src", middlePic.imagePath);
-    middleImage.setAttribute("alt", middlePic.name);
-    middleImage.setAttribute("title", middlePic.name);
-    
-    rightImage.setAttribute("src", rightPic.imagePath);
+        rightImage.setAttribute("src", rightPic.imagePath);
     rightImage.setAttribute("alt", rightPic.name);
     rightImage.setAttribute("title", rightPic.name);
     
@@ -139,25 +152,8 @@ function list() {
                 data: vo,
                 
                 
-                backgroundColor: [
-                    'rgba(255, 99, 132, 1)',    
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)'
-                    
-                    
-                    
-                ],
-                borderColor: [
-                    'rgba(255, 99, 132, 1)',    
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)'
-                ],
+                backgroundColor: "grey",
+                borderColor: "white",
                 borderWidth: 1
                 
                 
@@ -167,27 +163,8 @@ function list() {
                 data: vi,
                 
                 
-                backgroundColor: [
-                    
-                    'rgba(255, 99, 132, 1)',    
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)'
-                    
-                    
-                    
-                ],
-                borderColor: [
-                    'rgba(255, 99, 132, 0.2)',    
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)',
-                    
-                ],
+                backgroundColor: "black",
+                borderColor: "white",
                 borderWidth: 1
                 
             }]
