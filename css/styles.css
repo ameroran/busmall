@@ -1,23 +1,48 @@
-/* body {
-    background: rgb(6, 217, 245);
-  } */
+body {
+  background-image: url(https://images.wallpapersden.com/image/download/mix-colour-background_64813_3840x2160.jpg);
 
- 
-  #imagesForm {
-    max-width: 90%;
-    margin: 0 auto;
-    text-align: center;
-    margin: 100px;
-  }
+  color: black;
 
 
-  img {
-    width: 300px;
-    height: 300px;
-    border: 10px solid greenyellow;
-    padding: 10px;
-    margin: 10px;
-    border-radius: 5px;
-  }
+}
+
+
+#imagesForm {
+  max-width: 90%;
+  margin: 0 auto;
+  text-align: center;
+  margin: 100px;
+  margin-bottom: 50px;
+}
+
+
+section li:hover{
+  margin-top: 30px;
+  font-size: 20px;
+  transition: 900ms;
+}
+
+
+#rightImage,#leftImage, #middleImage {
+  width: 200px;
+  height: 200px;
+  /* /* border: 30px ; */
+  /* padding: 60px; */
+  margin: 30px;
+  border-radius: 55px;
+  transform: scale(1.1);
+  transition: 900ms;
+
+
+}
+
+#rightImage:hover,#middleImage:hover,#leftImage:hover{
+
+  transition: 900ms;
+  width: 300px;
+  height: 300px;
+}
+
+
 
   
